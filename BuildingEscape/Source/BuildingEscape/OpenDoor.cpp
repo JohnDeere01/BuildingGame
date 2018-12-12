@@ -20,12 +20,12 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	/*
+	
 	AActor* Owner = GetOwner();
 
 	FRotator NewRotation = FRotator(0.0f, 180.0f, 0.0f);
 	Owner->SetActorRotation(NewRotation);
-	*/
+	
 	
 }
 
@@ -35,14 +35,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	
-	if (a<=180)
-	{
-		a = a + 0.5;
-		AActor* Owner = GetOwner();
-
-		FRotator NewRotation = FRotator(0.0f, a, 0.0f);
-		Owner->SetActorRotation(NewRotation);
-	}
+	
 
 
 }
