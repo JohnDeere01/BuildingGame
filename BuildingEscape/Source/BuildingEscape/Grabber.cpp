@@ -1,6 +1,9 @@
 // John deere confidential
 
 #include "Grabber.h"
+#include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 
 
 // Sets default values for this component's properties
@@ -29,6 +32,16 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	// Get the player view point this tick
+
+
+
+	ActorLocation = GetOwner()->GetActorLocation().ToString();
+	ActorRotation = GetOwner()->GetInstigatorController()->GetControlRotation().ToString();
+
+	UE_LOG(LogTemp, Warning, TEXT("Location: %s  Rotation: %s"), *ActorLocation, *ActorRotation);
+	// Ray-cast out to reach distance
+
+	// See what we hit
 }
 
