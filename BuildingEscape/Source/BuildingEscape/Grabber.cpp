@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
+#include "DrawDebugHelpers.h"
 
 
 // Sets default values for this component's properties
@@ -36,11 +37,33 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 
 
-	ActorLocation = GetOwner()->GetActorLocation().ToString();
-	ActorRotation = GetOwner()->GetInstigatorController()->GetControlRotation().ToString();
+	PlayerViewPointLocation = GetOwner()->GetActorLocation();
+	PlayerViewPointRotation = GetOwner()->GetInstigatorController()->GetControlRotation();
 
-	UE_LOG(LogTemp, Warning, TEXT("Location: %s  Rotation: %s"), *ActorLocation, *ActorRotation);
+	
+	UE_LOG(LogTemp, Warning, TEXT("Location: %s  Rotation: %s"), 
+		*PlayerViewPointLocation.ToString(), 
+		*PlayerViewPointRotation.ToString()
+	);
+	
+	
+
+	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
+	DrawDebugLine(
+		GetWorld(),	
+		PlayerViewPointLocation, 
+		LineTraceEnd,
+		FColor(255, 0, 0), 
+		false, 
+		0.f, 
+		0.f, 
+		10.f
+	);
+	// Draw a red trace in the world to visualize
+
+
 	// Ray-cast out to reach distance
+
 
 	// See what we hit
 }

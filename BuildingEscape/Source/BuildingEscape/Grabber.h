@@ -25,9 +25,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	FString ActorLocation;
-	FString ActorRotation;
-
+	FVector PlayerViewPointLocation;
+	FRotator PlayerViewPointRotation;
+	float Reach = 100.f;
 		
 	
 };
