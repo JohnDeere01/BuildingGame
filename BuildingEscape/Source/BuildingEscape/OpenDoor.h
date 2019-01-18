@@ -8,6 +8,7 @@
 #include "Engine/World.h"
 #include "OpenDoor.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenRequest);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
@@ -18,6 +19,8 @@ public:
 	// Sets default values for this component's properties
 	UOpenDoor();
 	
+	UPROPERTY(BlueprintAssignable)
+		FOnOpenRequest OnOpenRequest;
 
 protected:
 	// Called when the game starts
@@ -37,7 +40,7 @@ private:
 	float OpenAngle = 180.0f;
 	
 	UPROPERTY(EditAnywhere)
-		ATriggerVolume* PressurePlate;
+		ATriggerVolume* PressurePlate = nullptr;
 		
 	UPROPERTY(EditAnywhere)
 		float DoorCloseDelay = 1.5f;
@@ -47,6 +50,8 @@ private:
 	// Returns total mass in Kg
 	float GetTotalMassOfActorsOnPlate();
 
-	AActor* Owner; //Owning door
+	//Owning door
+	AActor* Owner = nullptr; 
 
 };
+
